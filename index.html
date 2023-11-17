@@ -1,0 +1,144 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <style>
+        html, body {
+            height: 100%;
+            margin: 0;
+        }
+        #container {
+            display: flex; /* Use flex container */
+            height: 100%;
+        }
+        #output-container {
+            width: 60%; /* Set the width for the left side */
+            box-sizing: border-box; /* Include padding and border in the width calculation */
+            padding: 10px; /* Add padding for spacing */
+        }
+        
+        #output {
+            display: block;
+            border: solid black;
+            border-width: thick;
+            margin-left: 10px;
+            width: 90%;
+            aspect-ratio: 7 / 1;
+            resize: none;
+
+            font-family: Courier New, monospace;
+	        font-size: 10px;
+            white-space: pre;
+	        color: black;
+        }
+        #sea-indicator {
+            display: inline-block;
+            margin-right: 20px;
+            color:grey;
+            border: dotted black;
+        }
+        #triangle-div {
+            display: inline-block;
+        }
+	    pre {
+            font-size: 27px;
+		    border: solid black;
+		    border-width: thin;
+		    display: inline-block;
+		    padding: 3px;
+		    margin: 1px;
+		    width: 45px;
+		    aspect-ratio: 1 / 1;
+		    text-align: center;
+		    vertical-align: bottom;
+		    overflow-x: clip;
+	    }
+        .vsmallText {
+            font-size: 7px;
+        }
+        .smallText {
+            font-size: 15px;
+        }
+	.true-bool {
+		background-color: black;
+	}
+	.bool-box {
+		width: 15px;
+		aspect-ratio: 1 / 1;
+		font-size: 0px;
+	}
+        #controls-container {
+            flex: 1;
+            padding: 10px;
+            margin: 20px;
+        }
+
+        .slider {
+            -webkit-appearance: none; /* Override default CSS styles */
+            appearance: none;
+            width: 100%;
+            height: 7px;
+            background: #d3d3d3;
+            outline: none;
+            opacity: 0.7;
+            -webkit-transition: .2s;
+            transition: opacity .2s;
+        }
+	
+	    textarea{
+	       resize: none;
+	       width: 70%;
+	    }
+
+        #custom-rule-error {
+            color: red;
+        }
+        #gen-button {
+            margin: 10px;
+            width: 100%;
+            aspect-ratio: 6/1;
+            font-size: 5vh;
+        }
+
+    </style>
+    <meta charset="utf-8" />
+    <title>Pascal</title>
+</head>
+<body>
+    <div id="container">
+        <div id="output-container">
+            <pre id="output" readonly></pre>
+        </div>
+        <div id="controls-container">
+            Top Number: <span id="start-disp">1</span> <br />
+            <input type="range" min="-3" max="3" value="1" class="slider" id="start-slider" /> <br />
+            <br /><br />
+            "Sea" Value: <span id="sea-disp">0</span> <br />
+            <input type="range" min="-3" max="3" value="0" class="slider" id="sea-slider" /> <br /> <br />
+            <input type="checkbox" id="sea-static-input" />
+            Keep Sea Static?
+            <br /><br />
+            Custom Rule: <br />
+            <textarea placeholder="Enter custom rule" id="custom-rule-input">l + r</textarea> <br />
+            <span id="custom-rule-error"></span> <br />
+            The custom rule uses javascript operators, as well as the javascript Math functions. The following values are provided to use for rules: <br />
+            l - The value of the left square above<br />
+            r - The value of the right square above<br />
+            s - The value of the sea on this row<br />
+            n - The current row number (starting at 0, going down)<br />
+            i - the current cell number on the row(starts at 1 on the left, 0 is used for the sea)<br />
+            q - a random integer from 1 to 10 (inclusive)
+            <br /> <br />
+            Triangle type: <br />
+                           <select id="type-input">
+                               <option value="number">Numbers</option>
+                               <option value="boolean">Booleans</option>
+                           </select>
+            <br />
+            <button id="gen-button">GENERATE</button>
+        </div>
+    </div>
+    
+    <script src="PascalGenerator.js"></script>
+</body>
+</html>
